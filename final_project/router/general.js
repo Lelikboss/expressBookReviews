@@ -29,13 +29,21 @@ public_users.get('/', async function (req, res) {
 });
 
 // Get book details based on ISBN
-public_users.get('/isbn/:isbn', async function (req, res) {
-    try {
-        const isbn = await req.params.isbn;
-        books[isbn] ? res.send(books[isbn]) : res.send("Not")
-    } catch (error) {
-        res.status(500).send(error);
-    }
+// public_users.get('/isbn/:isbn', async function (req, res) {
+//     try {
+//         const isbn = await req.params.isbn;
+//         books[isbn] ? res.send(books[isbn]) : res.send("Not")
+//     } catch (error) {
+//         res.status(500).send(error);
+//     }
+// });
+public_users.get('/isbn/:isbn', function (req, res) {
+    new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const isbn = req.params.isbn;
+            resolve(books[isbn] ? res.send(books[isbn]) : res.send("Not found."))
+        }, 300);
+    })
 });
 
 // Get book details based on author
