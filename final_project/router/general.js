@@ -32,7 +32,7 @@ public_users.get('/', async function (req, res) {
 public_users.get('/isbn/:isbn', async function (req, res) {
     try {
         const isbn = await req.params.isbn;
-        books[isbn] ? res.send(books[isbn]) : res.send("Not found.")
+        books[isbn] ? res.send(books[isbn]) : res.send("Not")
     } catch (error) {
         res.status(500).send(error);
     }
@@ -64,7 +64,7 @@ public_users.get('/title/:title', async function (req, res) {
             res.send(`Book ${title} not found.`)
         }
     } catch (error) {
-
+        res.status(500).send(error);
     }
 });
 
